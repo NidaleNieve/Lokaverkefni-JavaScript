@@ -18,9 +18,11 @@ const render = (data) => {
         contentDiv.id = "content";
 
         const image = document.createElement('img');
-        image.src = imageUrl || "https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,f_jpg,h_767,q_65,w_639/v1/clients/fortcollinsco/Events_old_town_concert_credit_Richard_Haro_cc9500d5-7f6d-4786-9735-4a9d75d8fa50.jpg";
-        console.log(imageUrl);
+        image.src = imageUrl;
         image.alt = name;
+        image.onerror = () => {
+            image.src = "https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,f_jpg,h_767,q_65,w_639/v1/clients/fortcollinsco/Events_old_town_concert_credit_Richard_Haro_cc9500d5-7f6d-4786-9735-4a9d75d8fa50.jpg";
+        };
 
         const title = document.createElement('h2');
         title.textContent = name;
@@ -32,13 +34,13 @@ const render = (data) => {
         dateid.textContent = date;
 
         const eventin = document.createElement('p');
-        eventin.textContent = events;
+        eventin.textContent =`Tags: ${events.join(', ')}`;
 
         const locationid = document.createElement('p');
         locationid.textContent = location.city;
 
         const link = document.createElement('a');
-        link.href = url;
+        link.href = url;        
         link.textContent = "Meira um viðburðinn";
         link.target = "_blank";
         link.rel = "noopener noreferrer"
@@ -68,14 +70,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         //Simulate a delay, til að prófa loading skilaboðin og hafa kannski kúl animation til að birta allt
         const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-        await delay(1000); // delay 2 seconds
+        await delay(1000);
 
         try {
             //fetcha og birti svo
             const data = await getData(); 
             const contentContainer = document.querySelector("#content");
             contentContainer.appendChild(render(data));
-
         } catch (err) {
             //ef error birti það í error tagginu 
             document.querySelector('#errors').textContent = err.message;
@@ -83,5 +84,5 @@ document.addEventListener("DOMContentLoaded", async () => {
             //Þegar það er búið að loadast, þá tek ég loading textann út
             loadingElem.textContent = '';
         }
-})();
+    })();
 });
