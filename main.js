@@ -10,7 +10,7 @@ const render = (data) => {
     // bý til fragment sem er eins og array nema betra
     const fragment = document.createDocumentFragment(); 
     //fer í gegnum öll objectin úr jsoninu
-    data.forEach(({name, description, events, imageurl, date, location, url}) => {
+    data.forEach(({name, description, events, imageUrl, date, location, url}) => {
         //Bý til cardið og content divið sem heldur allar upplýsingarnar
         const card = document.createElement('div');
         card.classList.add('card');
@@ -18,18 +18,43 @@ const render = (data) => {
         contentDiv.id = "content";
 
         const image = document.createElement('img');
-        image.src = imageurl || "https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,f_jpg,h_767,q_65,w_639/v1/clients/fortcollinsco/Events_old_town_concert_credit_Richard_Haro_cc9500d5-7f6d-4786-9735-4a9d75d8fa50.jpg";
-        image.alt = name
-        
+        image.src = imageUrl || "https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,f_jpg,h_767,q_65,w_639/v1/clients/fortcollinsco/Events_old_town_concert_credit_Richard_Haro_cc9500d5-7f6d-4786-9735-4a9d75d8fa50.jpg";
+        console.log(imageUrl);
+        image.alt = name;
+
         const title = document.createElement('h2');
         title.textContent = name;
 
         const desc = document.createElement('p');
-        title.textContent = description;
+        desc.textContent = description;
 
+        const dateid = document.createElement('p');
+        dateid.textContent = date;
+
+        const eventin = document.createElement('p');
+        eventin.textContent = events;
+
+        const locationid = document.createElement('p');
+        locationid.textContent = location.city;
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.textContent = "Meira um viðburðinn";
+        link.target = "_blank";
+        link.rel = "noopener noreferrer"
+
+        //Bæti við öllum items við #content divið
         contentDiv.appendChild(image);
         contentDiv.appendChild(title);
         contentDiv.appendChild(desc); 
+        contentDiv.appendChild(dateid);
+        contentDiv.appendChild(eventin);
+        contentDiv.appendChild(locationid);
+        contentDiv.appendChild(link);
+
+        //Bæti svo #content divinu við cardið og bæti svo cardinu við fragmentið
+        card.appendChild(contentDiv);
+        fragment.appendChild(card);
     });
     return fragment;
 }
