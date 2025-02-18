@@ -77,7 +77,15 @@ document.addEventListener("DOMContentLoaded", async () => {
             const data = await getData(); 
             const contentContainer = document.querySelector("main");
             contentContainer.appendChild(render(data));
-            addTiltEffect();
+
+            VanillaTilt.init(document.querySelectorAll(".card"), {
+                scale: 1.01,
+                perspective: 1000,
+                max: 5,
+                speed: 1000,
+                glare: true,
+                "max-glare": 0.3,
+              });        
         } catch (err) {
             //ef error birti það í error tagginu 
             document.querySelector('#errors').textContent = err.message;
@@ -87,31 +95,3 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     })();
 });
-
-// Select all cards
-function addTiltEffect() {
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const cardWidth = rect.width;
-        const cardHeight = rect.height;
-        const centerX = rect.left + cardWidth / 2;
-        const centerY = rect.top + cardHeight / 2;
-    
-        // Calculate the mouse's position relative to the card center
-        const deltaX = e.clientX - centerX;
-        const deltaY = e.clientY - centerY;
-    
-        // Adjust sensitivity (max tilt 20°)
-        const rotateX = (deltaY / cardHeight) * 20;
-        const rotateY = (deltaX / cardWidth) * -20;
-    
-        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
-      });
-    
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
-      });
-    });
-  }
