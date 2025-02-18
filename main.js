@@ -75,8 +75,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         try {
             //fetcha og birti svo
             const data = await getData(); 
-            const contentContainer = document.querySelector("#content");
+            const contentContainer = document.querySelector("main");
             contentContainer.appendChild(render(data));
+            addTiltEffect();
         } catch (err) {
             //ef error birti það í error tagginu 
             document.querySelector('#errors').textContent = err.message;
@@ -86,3 +87,31 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     })();
 });
+
+// Select all cards
+function addTiltEffect() {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const cardWidth = rect.width;
+        const cardHeight = rect.height;
+        const centerX = rect.left + cardWidth / 2;
+        const centerY = rect.top + cardHeight / 2;
+    
+        // Calculate the mouse's position relative to the card center
+        const deltaX = e.clientX - centerX;
+        const deltaY = e.clientY - centerY;
+    
+        // Adjust sensitivity (max tilt 20°)
+        const rotateX = (deltaY / cardHeight) * 20;
+        const rotateY = (deltaX / cardWidth) * -20;
+    
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
+      });
+    
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+      });
+    });
+  }
