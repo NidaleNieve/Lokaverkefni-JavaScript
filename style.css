@@ -1,10 +1,9 @@
-
 .card {
     transform-style: preserve-3d;
     transform: perspective(1000px);
     border-radius: 8px;
     border: 1px solid #0a0a0a;
-    padding: 10px;
+    padding: 17px;
     width: 278px;
     margin: 20px;
     min-height: 450px;
@@ -43,34 +42,7 @@ main {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-
 }
-
-#loading {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #FF5733; /* Change to your desired color */
-    z-index: 9999;
-  }
-  
-  /* Class to trigger swipe left */
-  .slide-out {
-    animation: swipeLeft 1s forwards;
-  }
-  
-  /* Keyframes for the swipe-left effect */
-  @keyframes swipeLeft {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-
 
 @media screen and (min-width: 768px) {
     main {
@@ -87,3 +59,36 @@ main {
 }
 
 */
+  
+  /* The loader bar that fills up */
+  #loader-bar {
+    height: 100%;
+    width: 0%;
+    background: #3498db;
+    transition: width 0.5s ease;
+    z-index: 2001;
+  }
+  
+  /* Class to fade out the loader */
+  .hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  #overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 2000;
+    opacity: 1;
+    transition: opacity 2s ease;
+  }
+  
+  /* When the 'hidden' class is added, the overlay fades out */
+  #overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }

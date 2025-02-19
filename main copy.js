@@ -64,24 +64,13 @@ const render = (data) => {
 //Nota IIFE fall til þess að geta notað async/await, það er ekki hægt að nota það í top level kóða
 document.addEventListener("DOMContentLoaded", async () => {
     (async () => { 
-        //const loadingElem = document.querySelector('#loading');
-        //loadingElem.textContent = 'Loading...';
-
         //birti loading skilaboð 
-        const loaderBar = document.getElementById("loader-bar");
-        let progress = 0;
-        const progressInterval = setInterval(() => {
-            progress += 10;
-            if (progress <= 90) {  // Increment up to 90%
-                loaderBar.style.width = progress + "%";
-            } else {
-                clearInterval(progressInterval);
-            }
-        }, 70);
+        const loadingElem = document.querySelector('#loading');
+        loadingElem.textContent = 'Loading...';
 
         //Simulate a delay, til að prófa loading skilaboðin og hafa kannski kúl animation til að birta allt
         const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-        await delay(1200);
+        await delay(700);
 
         try {
             //fetcha og birti svo
@@ -89,13 +78,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             const contentContainer = document.querySelector("main");
             contentContainer.appendChild(render(data));
 
-            loaderBar.style.width = "100%";
-
             VanillaTilt.init(document.querySelectorAll(".card"), {
                 scale: 1.01,
                 perspective: 1000,
-                max: 3,
-                speed: 5000,
+                max: 5,
+                speed: 1000,
                 glare: true,
                 "max-glare": 0.3,
               });        
@@ -104,11 +91,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             document.querySelector('#errors').textContent = err.message;
         } finally {
             //Þegar það er búið að loadast, þá tek ég loading textann út
-            //loadingElem.textContent = '';
-            const loader = document.getElementById("overlay");
-            loader.classList.add("hidden");
-            // Optionally remove the loader from the DOM after the fade-out transition
-
+            loadingElem.textContent = '';
         }
     })();
 });
