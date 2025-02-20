@@ -1,11 +1,11 @@
-const getData = async () => {
+async function getData() {
     //Fetcha dataið, parsar það og skilar því svo
     const url = "info.json";
     const response = await fetch(url); //fetcha dataið
     return await response.json(); //parsa jsonið og skila því
 }
 
-const render = (data) => {
+function fragmentMaker(data) {
     //Bý til elementin
     // bý til fragment sem er eins og array nema betra
     const fragment = document.createDocumentFragment(); 
@@ -31,6 +31,7 @@ const render = (data) => {
         desc.textContent = description;
 
         const dateid = document.createElement('p');
+        //breyti dagsetningunni í íslenska dagsetningu
         dateid.textContent = dayjs(date, 'YYYY/MM/DD').locale('is').format('D. MMMM YYYY');
 
         const eventin = document.createElement('p');
@@ -61,6 +62,8 @@ const render = (data) => {
     return fragment;
 }
 
+
+
 //Nota IIFE fall til þess að geta notað async/await, það er ekki hægt að nota það í top level kóða
 document.addEventListener("DOMContentLoaded", async () => {
     (async () => { 
@@ -85,7 +88,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             //fetcha og birti svo
             const data = await getData(); 
             const contentContainer = document.querySelector("main");
-            contentContainer.appendChild(render(data));
+            contentContainer.appendChild(fragmentMaker(data));
 
             //filli upp loaderinn
             loaderBar.style.width = "100%";
