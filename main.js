@@ -62,10 +62,10 @@ function fragmentMaker(data) {
     return fragment;
 }
 
-function render(data) {
+function render(fragment) {
     //Birti fragmentið
     const contentContainer = document.querySelector("main");
-    contentContainer.appendChild(data);
+    contentContainer.replaceChildren(fragment);
 
     //stilli upp tilt        
     VanillaTilt.init(document.querySelectorAll(".card"), {
@@ -78,6 +78,7 @@ function render(data) {
       }); 
 }
 
+let data = [];
 //Nota IIFE fall til þess að geta notað async/await, það er ekki hægt að nota það í top level kóða
 document.addEventListener("DOMContentLoaded", async () => {
     (async () => { 
@@ -100,7 +101,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         try {
             //fetcha, bý til fragment, svo rendera ég það
-            const data = await getData(); 
+            data = await getData(); 
             fragment = fragmentMaker(data);
             render(fragment);
 
@@ -116,4 +117,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             const loader = document.getElementById("overlay").classList.add("hidden");
         }
     })();
+    
+    //search function
+    document.getElementById("searchEvents").addEventListener("input", (event) => {
+        searchid = event.target.value;
+        function filteredData(item) {
+            return item.name.toLowerCase().includes(searchid.toLowerCase());
+        };
+        const fragment = fragmentMaker(data.filter(filteredData));
+        render(fragment);
+    });
 });
