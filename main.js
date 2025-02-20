@@ -31,7 +31,7 @@ const render = (data) => {
         desc.textContent = description;
 
         const dateid = document.createElement('p');
-        dateid.textContent = date;
+        dateid.textContent = dayjs(date, 'YYYY/MM/DD').locale('is').format('D. MMMM YYYY');
 
         const eventin = document.createElement('p');
         eventin.textContent =`Tags: ${events.join(', ')}`;
