@@ -118,13 +118,20 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     })();
     
-    //search function
+    //search function með debounce
+    let debounceTimeout;
     document.getElementById("searchEvents").addEventListener("input", (event) => {
-        searchid = event.target.value;
-        function filteredData(item) {
-            return item.name.toLowerCase().includes(searchid.toLowerCase());
-        };
-        const fragment = fragmentMaker(data.filter(filteredData));
-        render(fragment);
+        //resetta timerinn þannig ef að það er skrifað annan staf þá byrjar hann aftur
+        clearTimeout(debounceTimeout);
+        //starta timerinn
+        debounceTimeout = setTimeout(() => {
+            //ef að 200ms liðnar síðan að það var skrifað þá filtera ég
+            searchid = event.target.value;
+            function filteredData(item) {
+                return item.name.toLowerCase().includes(searchid.toLowerCase());
+            };
+            const fragment = fragmentMaker(data.filter(filteredData));
+            render(fragment);
+        }, 200);
     });
 });
