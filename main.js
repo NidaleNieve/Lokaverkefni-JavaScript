@@ -64,15 +64,13 @@ const render = (data) => {
 //Nota IIFE fall til þess að geta notað async/await, það er ekki hægt að nota það í top level kóða
 document.addEventListener("DOMContentLoaded", async () => {
     (async () => { 
-        //const loadingElem = document.querySelector('#loading');
-        //loadingElem.textContent = 'Loading...';
-
-        //birti loading skilaboð 
+        //Starta loaderinum 
         const loaderBar = document.getElementById("loader-bar");
         let progress = 0;
+        //function sem á 70 ms fresti bæti ég 10% við loaderinn með því að nota nested loops
         const progressInterval = setInterval(() => {
             progress += 10;
-            if (progress <= 90) {  // Increment up to 90%
+            if (progress <= 90) { //stoppar á 90%
                 loaderBar.style.width = progress + "%";
             } else {
                 clearInterval(progressInterval);
@@ -89,8 +87,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             const contentContainer = document.querySelector("main");
             contentContainer.appendChild(render(data));
 
+            //filli upp loaderinn
             loaderBar.style.width = "100%";
-
+            //stilli upp tilt 
             VanillaTilt.init(document.querySelectorAll(".card"), {
                 scale: 1.01,
                 perspective: 1000,
@@ -100,15 +99,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                 "max-glare": 0.3,
               });        
         } catch (err) {
-            //ef error birti það í error tagginu 
+            //ef error birti það í error tagginu og bæti við hiddenerr klasan til þess að hava flott style
             document.querySelector('#errors').textContent = err.message;
+            document.querySelector('#errors').classList.add('show');
+            console.log(err);
         } finally {
-            //Þegar það er búið að loadast, þá tek ég loading textann út
-            //loadingElem.textContent = '';
-            const loader = document.getElementById("overlay");
-            loader.classList.add("hidden");
-            // Optionally remove the loader from the DOM after the fade-out transition
-
+            //Þegar það er búið að loadast þá fadea út loaderinn
+            const loader = document.getElementById("overlay").classList.add("hidden");
         }
     })();
 });

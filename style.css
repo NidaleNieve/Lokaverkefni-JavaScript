@@ -1,8 +1,14 @@
+main {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .card {
     transform-style: preserve-3d;
     transform: perspective(1000px);
     border-radius: 8px;
-    border: 1px solid #0a0a0a;
+    border: 0px solid #0a0a0a;
     padding: 17px;
     width: 278px;
     margin: 20px;
@@ -10,18 +16,10 @@
     transition: transform 0.2s ease, box-shadow 0.3s ease;
     box-shadow: 0px 6px 25px  rgba(0, 0, 0, 0.6);
     perspective: 1000px;
-  }
+}
   
 .card:hover {
     box-shadow: 0px 16px 30px rgba(0, 0, 0, 0.7);
-}
-  
-.card h2 {
-    margin-left: 2px;
-}
-  
-.card p {
-    margin: 10x;
 }
 
 .card img {
@@ -32,16 +30,47 @@
     margin-bottom: 10px;
 }
 
-/* parralax effec
+/* parralax effect
 .card #content {
     transform: translateZ(10px);
 }
 */
 
-main {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+#errors.show{
+    color: red;
+    transform-style: preserve-3d;
+    border-radius: 8px;
+    border: 0px solid #0a0a0a;
+    padding: 17px;
+    margin: 20px;
+    box-shadow: 0px 6px 25px  rgba(0, 0, 0, 0.6);
+}
+
+/* set heightið sem max en set width sem 0 til að víkka það svo */
+#loader-bar {
+    height: 100%;
+    width: 0%;
+    background: #3498db;
+    transition: width 0.5s ease;
+    z-index: 2001;  
+}
+
+/* Set overlay parent elementið til að filla allan skjáinn, og stilli einnig transition fyrir opacity*/
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 2000;
+    transition: opacity 2s ease;
+}
+  
+/* Þegar ég bæti við hidden klasanum þá fadear opacity út af parent opacity elementinu*/
+#overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -51,44 +80,3 @@ main {
 
     }
 }
-/*
-@media screen and (min-width: 1024px) {
-    main {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-}
-
-*/
-  
-  /* The loader bar that fills up */
-  #loader-bar {
-    height: 100%;
-    width: 0%;
-    background: #3498db;
-    transition: width 0.5s ease;
-    z-index: 2001;
-  }
-  
-  /* Class to fade out the loader */
-  .hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  #overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: white;
-    z-index: 2000;
-    opacity: 1;
-    transition: opacity 2s ease;
-  }
-  
-  /* When the 'hidden' class is added, the overlay fades out */
-  #overlay.hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
