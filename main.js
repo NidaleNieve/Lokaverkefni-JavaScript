@@ -62,7 +62,21 @@ function fragmentMaker(data) {
     return fragment;
 }
 
+function render(data) {
+    //Birti fragmentið
+    const contentContainer = document.querySelector("main");
+    contentContainer.appendChild(data);
 
+    //stilli upp tilt        
+    VanillaTilt.init(document.querySelectorAll(".card"), {
+        scale: 1.01,
+        perspective: 1000,
+        max: 3,
+        speed: 5000,
+        glare: true,
+        "max-glare": 0.3,
+      }); 
+}
 
 //Nota IIFE fall til þess að geta notað async/await, það er ekki hægt að nota það í top level kóða
 document.addEventListener("DOMContentLoaded", async () => {
@@ -85,29 +99,20 @@ document.addEventListener("DOMContentLoaded", async () => {
         await delay(1200);
 
         try {
-            //fetcha og birti svo
+            //fetcha, bý til fragment, svo rendera ég það
             const data = await getData(); 
-            const contentContainer = document.querySelector("main");
-            contentContainer.appendChild(fragmentMaker(data));
+            fragment = fragmentMaker(data);
+            render(fragment);
 
             //filli upp loaderinn
             loaderBar.style.width = "100%";
-            //stilli upp tilt 
-            VanillaTilt.init(document.querySelectorAll(".card"), {
-                scale: 1.01,
-                perspective: 1000,
-                max: 3,
-                speed: 5000,
-                glare: true,
-                "max-glare": 0.3,
-              });        
         } catch (err) {
             //ef error birti það í error tagginu og bæti við hiddenerr klasan til þess að hava flott style
             document.querySelector('#errors').textContent = err.message;
             document.querySelector('#errors').classList.add('show');
             console.log(err);
         } finally {
-            //Þegar það er búið að loadast þá fadea út loaderinn
+            //Þegar allt er búið að loadast þá fadea út loaderinn
             const loader = document.getElementById("overlay").classList.add("hidden");
         }
     })();
