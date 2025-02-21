@@ -1,4 +1,3 @@
-
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -15,7 +14,7 @@ main{
     padding: 17px;
     margin: 20px;
     transition: transform 0.5s ease, box-shadow 0.3s ease;
-    box-shadow: 0px 6px 25px  rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 6px 25px  rgba(0, 0, 0, 0.2);
 
 }
 
@@ -24,11 +23,13 @@ main{
     margin: 0 auto;
     width: 85%;
     min-width: 270px;
-    max-width: 450px
+    max-width: 450px;
+    box-shadow: 0px 0px 25px  rgba(0, 0, 0, 0.3);
+
 }
 
 #searchFestivals:hover {
-    box-shadow: 10px 16px 30px rgba(5, 103, 207, 0.5);
+    box-shadow: 10px 16px 30px rgba(5, 103, 207, 0.3);
 }
 
 #searchFestivals:focus {
@@ -56,42 +57,47 @@ main{
 }
   
 .card:hover {
-    box-shadow: 0px 16px 30px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 16px 30px rgba(0, 0, 0, 0.4);
 }
 
 .card:active {
     transform: scale(0.98) !important;
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.05);
 }
 
 .card img {
     width: 100%;
     height: auto;
-    display: block;
     border-radius: 4px;
-    margin-bottom: 10px;
+    margin-bottom: 7px;
     object-fit: cover;
     min-height: 100px; 
     max-height: 160px;
-  
 }
 
 .card a {
     display: flex;
     justify-content: center;
-    align-items: center;
-    align-self: stretch;
-    padding: 12px 4px;
-    gap: 10px;
+    padding: 12px;
     border-radius: 8px;
-    background: #f5f5f5;
+    background-color: #f5f5f5;
     text-decoration: none;
     margin-top: 10px;
+    transition: box-shadow 0.5s ease, transform 0.5s ease;
 }
 
 .card a:visited {
     color: #0a0a0a;
 }
+
+.card a:hover {
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2)
+}
+
+.card a:focus {
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
 .litid {
     margin: 3px;
     color: rgb(0, 0, 0, 0.60);
@@ -104,7 +110,6 @@ main{
 .card p {
     margin-left: 3px;
 }
-
 
 /* set heightið sem max en set width sem 0 til að víkka það svo */
 #loader-bar {
