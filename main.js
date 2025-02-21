@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         //Simulate a delay, til að prófa loading skilaboðin og hafa kannski kúl animation til að birta allt
         const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-        await delay(1200);
+        await delay(1100);
 
         try {
             //fetcha, bý til fragment, svo rendera ég það
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     
     //search function með debounce
     let debounceTimeout;
-    document.getElementById("searchEvents").addEventListener("input", (event) => {
+    document.getElementById("searchFestivals").addEventListener("input", (event) => {
         //resetta timerinn þannig ef að það er skrifað annan staf þá byrjar hann aftur
         clearTimeout(debounceTimeout);
         //starta timerinn
