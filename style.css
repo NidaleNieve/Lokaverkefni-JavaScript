@@ -27,6 +27,7 @@ main{
 
 .card:active {
     transform: scale(0.98) !important;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .card img {
@@ -46,8 +47,8 @@ main{
 #searchFestivals {
     display: grid;
     margin: 0 auto;
-    width: 60%;
-    min-width: 330px;
+    width: 85%;
+    min-width: 270px;
     max-width: 450px
 }
 
@@ -99,10 +100,20 @@ main{
     pointer-events: none;
 }
 
-@media screen and (min-width: 768px) {
+/* Láta search barið vera gott fyrir öll screen sizes */
+@media screen and (min-width: 450px) {
+    #searchFestivals {
+        width: 70%;    
+    }
+}
+@media screen and (min-width: 530px) {
+    #searchFestivals {
+        width: 60%;    
+    }
+}
+
+@media screen and (min-width: 1024px) {
     main {
         gap: 20px;
-        padding: 20px;
-
     }
 }
