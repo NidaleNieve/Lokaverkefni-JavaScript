@@ -10,7 +10,7 @@ main{
     border: 0px solid #0a0a0a;
     padding: 17px;
     margin: 20px;
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
     box-shadow: 0px 6px 25px  rgba(0, 0, 0, 0.6);
 
 }
@@ -23,6 +23,10 @@ main{
   
 .card:hover {
     box-shadow: 0px 16px 30px rgba(0, 0, 0, 0.7);
+}
+
+.card:active {
+    transform: scale(0.98) !important;
 }
 
 .card img {
@@ -54,6 +58,7 @@ main{
 #searchFestivals:focus {
     outline: none;
     box-shadow: 0px 8px 20px rgba(0, 123, 255, 0.5);
+    transform: scale(0.99);
 }
 
 
