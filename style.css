@@ -1,10 +1,14 @@
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 main{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-/* card style */
+/* universal formattið */
 .card, #searchFestivals{
     border-radius: 8px;
     border: 0px solid #0a0a0a;
@@ -14,6 +18,36 @@ main{
     box-shadow: 0px 6px 25px  rgba(0, 0, 0, 0.6);
 
 }
+
+#searchFestivals {
+    display: grid;
+    margin: 0 auto;
+    width: 85%;
+    min-width: 270px;
+    max-width: 450px
+}
+
+#searchFestivals:hover {
+    box-shadow: 10px 16px 30px rgba(5, 103, 207, 0.5);
+}
+
+#searchFestivals:focus {
+    outline: none;
+    box-shadow: 0px 8px 20px rgba(0, 123, 255, 0.5);
+    transform: scale(0.99);
+}
+
+#errors.show{
+    color: red;
+    transform-style: preserve-3d;
+    border-radius: 8px;
+    border: 0px solid #0a0a0a;
+    padding: 17px;
+    margin: 20px;
+    box-shadow: 0px 6px 25px  rgba(0, 0, 0, 0.6);
+}
+
+/* card style */
 .card {
     width: 278px;
     transform-style: preserve-3d;
@@ -36,42 +70,41 @@ main{
     display: block;
     border-radius: 4px;
     margin-bottom: 10px;
+    object-fit: cover;
+    min-height: 100px; 
+    max-height: 160px;
+  
 }
 
-/* parralax effect
-.card #content {
-    transform: translateZ(10px);
-}
-*/
-
-#searchFestivals {
-    display: grid;
-    margin: 0 auto;
-    width: 85%;
-    min-width: 270px;
-    max-width: 450px
-}
-
-#searchFestivals:hover {
-    box-shadow: 10px 16px 30px rgba(5, 103, 207, 0.5);
-}
-
-#searchFestivals:focus {
-    outline: none;
-    box-shadow: 0px 8px 20px rgba(0, 123, 255, 0.5);
-    transform: scale(0.99);
-}
-
-
-#errors.show{
-    color: red;
-    transform-style: preserve-3d;
+.card a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    padding: 12px 4px;
+    gap: 10px;
     border-radius: 8px;
-    border: 0px solid #0a0a0a;
-    padding: 17px;
-    margin: 20px;
-    box-shadow: 0px 6px 25px  rgba(0, 0, 0, 0.6);
+    background: #f5f5f5;
+    text-decoration: none;
+    margin-top: 10px;
 }
+
+.card a:visited {
+    color: #0a0a0a;
+}
+.litid {
+    margin: 3px;
+    color: rgb(0, 0, 0, 0.60);
+}
+
+.card h2 {
+    margin: 2px;
+}
+
+.card p {
+    margin-left: 3px;
+}
+
 
 /* set heightið sem max en set width sem 0 til að víkka það svo */
 #loader-bar {

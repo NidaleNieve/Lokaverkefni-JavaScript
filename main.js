@@ -23,22 +23,24 @@ function fragmentMaker(data) {
         image.onerror = () => {
             image.src = "https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,f_jpg,h_767,q_65,w_639/v1/clients/fortcollinsco/Events_old_town_concert_credit_Richard_Haro_cc9500d5-7f6d-4786-9735-4a9d75d8fa50.jpg";
         };
+        const dateid = document.createElement('p');
+        //breyti dagsetningunni í íslenska dagsetningu
+        dateid.textContent = dayjs(date, 'YYYY/MM/DD').locale('is').format('D. MMMM YYYY');
+        dateid.classList.add('litid');
 
         const title = document.createElement('h2');
         title.textContent = name;
 
+        const locationid = document.createElement('p');
+        locationid.textContent = location.city;
+        locationid.classList.add('litid');
+
         const desc = document.createElement('p');
         desc.textContent = description;
 
-        const dateid = document.createElement('p');
-        //breyti dagsetningunni í íslenska dagsetningu
-        dateid.textContent = dayjs(date, 'YYYY/MM/DD').locale('is').format('D. MMMM YYYY');
-
         const eventin = document.createElement('p');
         eventin.textContent =`Tags: ${events.join(', ')}`;
-
-        const locationid = document.createElement('p');
-        locationid.textContent = location.city;
+        eventin.classList.add('litid');
 
         const link = document.createElement('a');
         link.href = url;        
@@ -48,12 +50,12 @@ function fragmentMaker(data) {
 
         //Bæti við öllum items við #content divið
         contentDiv.appendChild(image);
-        contentDiv.appendChild(title);
-        contentDiv.appendChild(desc); 
         contentDiv.appendChild(dateid);
-        contentDiv.appendChild(eventin);
+        contentDiv.appendChild(title);
         contentDiv.appendChild(locationid);
         contentDiv.appendChild(link);
+        contentDiv.appendChild(desc); 
+        contentDiv.appendChild(eventin);
 
         //Bæti svo #content divinu við cardið og bæti svo cardinu við fragmentið
         card.appendChild(contentDiv);
