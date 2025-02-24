@@ -5,8 +5,32 @@ async function getData() {
     return await response.json(); //parsa jsonið og skila því
 }
 
+function calcDistance(lat2, lon2) {
+    //Reikna fjarlægðina á milli stað og reykjavíkur
+    //reykavik coordinates:
+    lat1 = 64.146667;
+    lon1 = -21.94;
+    //nota formúlu sem ég fann hér: https://www.movable-type.co.uk/scripts/latlong.html
+    const R = 6371e3; // metres
+    const φ1 = lat1 * Math.PI/180; // φ, λ in radians
+    const φ2 = lat2 * Math.PI/180;
+    const Δφ = (lat2-lat1) * Math.PI/180;
+    const Δλ = (lon2-lon1) * Math.PI/180;
+
+    const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+            Math.cos(φ1) * Math.cos(φ2) *
+            Math.sin(Δλ/2) * Math.sin(Δλ/2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    const d = R * c; // in metres
+    return d //skila svo fjarlæginni
+}
+
 function fragmentMaker(data) {
     //Bý til elementin
+    //sorta dataið eftir fjarlægð frá reykjavík með sort functionini
+    data.sort((a, b) => {
+        return calcDistance(a.location.latitude, a.location.longitude) - calcDistance(b.location.latitude, b.location.longitude);
+      });
     // bý til fragment sem er eins og array nema betra
     const fragment = document.createDocumentFragment(); 
     //fer í gegnum öll objectin úr jsoninu
