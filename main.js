@@ -125,6 +125,20 @@ document.addEventListener("DOMContentLoaded", async () => {
         await delay(1100);
 
         try {
+            //Bý til sliderinn
+            slider = document.getElementById('slider');
+            noUiSlider.create(slider, {
+                start: [0, 100],
+                connect: true,
+                step: 5,
+                range: {
+                    'min': 0,
+                    'max': 100
+                }
+            });
+            slider.noUiSlider.on("update", function(event) {
+                console.log(event);
+            });
             //fetcha, bý til fragment, svo rendera ég það
             data = await getData(); 
             fragment = fragmentMaker(data);
@@ -145,7 +159,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     
     //search function með debounce
     let debounceTimeout;
-    document.getElementById("searchFestivals").addEventListener("input", (event) => {
+    document.getElementById("searchFestivals").addEventListener("input", function(event) {
         //resetta timerinn þannig ef að það er skrifað annan staf þá byrjar hann aftur
         clearTimeout(debounceTimeout);
         //starta timerinn
@@ -165,6 +179,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         event.stopPropagation();
         document.querySelector('.popup').classList.toggle('show');
         document.getElementById('filters').classList.toggle('focused');
+        console.log(document.getElementById('slider').noUiSlider.get());
+    });
+
+    //Ef að það er ýtt á eitthvað í popupinu þá lokast það ekki
+    document.querySelector('.popup').addEventListener('click', function(event) {
+        event.stopPropagation();
     });
 
     document.addEventListener('click', function() {
