@@ -159,4 +159,16 @@ document.addEventListener("DOMContentLoaded", async () => {
             render(fragment);
         }, 200);
     });
+
+    //filter takkinn, sýnir menu-ið
+    document.getElementById('filters').addEventListener('click', function(event) {
+        event.stopPropagation();
+        document.querySelector('.popup').classList.toggle('show');
+        document.getElementById('filters').classList.toggle('focused');
+    });
+
+    document.addEventListener('click', function() {
+        document.querySelector('.popup').classList.remove('show');
+        document.getElementById('filters').classList.remove('focused');
+    });
 });
