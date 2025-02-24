@@ -30,7 +30,6 @@ function fragmentMaker(data) {
 
         const title = document.createElement('h2');
         title.textContent = name;
-
         const locationid = document.createElement('p');
         locationid.textContent = location.city;
         locationid.classList.add('litid');
@@ -116,7 +115,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.log(err);
         } finally {
             //Þegar allt er búið að loadast þá fadea út loaderinn
-            const loader = document.getElementById("overlay").classList.add("hidden");
+            document.getElementById("overlay").classList.add("hidden");
         }
     })();
     

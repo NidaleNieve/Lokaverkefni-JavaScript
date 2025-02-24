@@ -16,7 +16,7 @@
         "name": "Food and Fun",
         "description": "Matarhátíð í Reykjavík. Kokkar keppast um að matreiða flottasta diskinn. Ekki kannski þessi týpíska útihátíð en hér þarf að flakka á milli staða enda ekkert sumarveður úti.",
         "events": ["matur", "keppni"],
-        "imageUrl": "https://scontent.frkv3-1.fna.fbcdn.net/v/t39.30808-6/428327231_891411779658470_700792433016392018_n.png?_nc_cat=110&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=ShaSgvVg0OYQ7kNvgHlnu3H&_nc_oc=Adgl-AlIdsfcJ4KkKdHbUJ8rGKy4BgSOU4vS0B85Hf7xk5IFFGYCfCT0dFxirO9APYs&_nc_zt=23&_nc_ht=scontent.frkv3-1.fna&_nc_gid=AJptqSRvLJAXWoAYcdBZTR_&oh=00_AYDsAjnFoj_ZySSVWk6mZeY5J2IVacXppl-AKgqRdxI--Q&oe=67B9117B",
+        "imageUrl": "https://media.graphassets.com/output=format:webp/CV5X5wR9T7mofF2m8b7e",
         "date": "2025-03-26",
         "location": {
             "city": "Reykjavik",
@@ -29,7 +29,7 @@
         "name": "Aldrei fór ég suður",
         "description": "Sannkölluð rokkhátíð sem haldin er 18.-19. apríl 2025. Viðburðurinn sameinar orku, háa tónlist og skemmtilega sýningar, með stuðningi frá Ísafjarðarbæ.",
         "events": ["tónlist", "tónleikar", "rock", "sýningar"],
-        "imageUrl": "https://scontent.frkv3-1.fna.fbcdn.net/v/t39.30808-6/421952678_792065596290857_3627242013738703867_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=xIh70ejIJjoQ7kNvgFo6AFM&_nc_oc=AdjyGJfYxcdn-aQfPfjK2kCYj7_HdyKv9ek0W-FN9W2K1RC60Dwzgj6UhTsCH2yGJPg&_nc_zt=23&_nc_ht=scontent.frkv3-1.fna&_nc_gid=AsgLUvXpws5ZUb_93CiN5uP&oh=00_AYBKR4LTtqxbs7dvZbaPa6Gs48DRHijKlZ18B1bOgv99MQ&oe=67B8F638",
+        "imageUrl": "https://i0.wp.com/grapevine.is/wp-content/uploads/aldrei-1.jpg?fit=543%2C500&quality=99&ssl=1",
         "date": "2025-04-18",
         "location": {
             "city": "Ísafjörður",
@@ -68,7 +68,7 @@
         "name": "Skjálfandi Festival",
         "description": "Fjölbreytt listahátíð í samkomuhúsinu á Húsavík þar sem listamenn frá ýmsum greinum taka þátt.",
         "events": ["list", "tónlist", "myndlist", "leiklist", "kvikmyndalist", "ljósmyndun"],
-        "imageUrl": "https://scontent.frkv3-1.fna.fbcdn.net/v/t39.30808-6/304951372_409997354603469_2201014208021871405_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=KJFeJzfpcxYQ7kNvgETkmwc&_nc_oc=AdhSk2U6A8HLM9fh2fUkhYWVykL_K4humG5u5-rsrzOf7NrOvZgLQZihVjYY5H2tCxw&_nc_zt=23&_nc_ht=scontent.frkv3-1.fna&_nc_gid=AbZbK0WhSjCkdTjZ3OdsAsT&oh=00_AYCwqE6iphEqSfsxuLCrsAkbCq1eqGR5lnKiZqLmjqbiGQ&oe=67B9164B",
+        "imageUrl": "https://www.nordurthing.is/static/news/skjalfandi2017_haus.png",
         "date": "2025-05-10",
         "location": {
             "city": "Húsavík",
@@ -120,7 +120,7 @@
         "name": "Fjör í Flóa",
         "description": "Fjölskyldu- og menningarhátíð í Flóamannahreppi með morgunmatsviðburðum, listasýningum og markaði.",
         "events": ["fjölskylda", "menning", "matur", "viðburður"],
-        "imageUrl": "https://scontent.frkv3-1.fna.fbcdn.net/v/t39.30808-6/350791296_259619043263875_2976828116071997623_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=WQqD1OWPoxgQ7kNvgHpoknh&_nc_oc=AdgMc4poCUwKB70D5ZtxyNM4nGKM1rzBLMaCTPH6cpY8i9gjwpkGRrhuKCr84esZPUM&_nc_zt=23&_nc_ht=scontent.frkv3-1.fna&_nc_gid=AxTejJY115uUpGvfo0zp4gk&oh=00_AYDVb81tjMQFCC5S9f7Ub6QthMETB-srwL4JttP-sjiqjg&oe=67B918E3",
+        "imageUrl": "https://www.floahreppur.is/static/files/_blob/8z1yi5azmx6j0fdrll4ki.png",
         "date": "2025-06-02",
         "location": {
             "city": "Flóamannahreppur",
@@ -133,7 +133,7 @@
         "name": "Sátan",
         "description": "Alvöru metal hátíð fyrir þá hörðustu, haldin á annan helgi í júní (6.–8. júní) með hressum og kraftmiklum tónleikum.",
         "events": ["metal", "tónlist", "hátíð"],
-        "imageUrl": "https://scontent.frkv3-1.fna.fbcdn.net/v/t39.30808-6/448211390_122194904990009023_3774879363130351153_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=8r7QllYUKewQ7kNvgFuIhf-&_nc_oc=AdgUHihJ0BseFFLlOD3COVnStbOJr7UnkKfR4PlmFCId7t5jGXAHx1fiALMeXpZChIM&_nc_zt=23&_nc_ht=scontent.frkv3-1.fna&_nc_gid=AJkAa8leCE_ma-jWvhAgcvK&oh=00_AYA7yenmCbtzL3-kB2uaI_yDqxUdPm4-3YJ1fCake2Sj6w&oe=67B928F6",
+        "imageUrl": "https://glaze-public-prod-resources.s3.eu-west-1.amazonaws.com/org-resources/eb8b80a8-e63d-4647-8636-b07b00c60d9d/77527b6a-577a-4780-90ae-1846ac0cca76.jpg",
         "date": "2025-06-05",
         "location": {
             "city": "Stykkishólmur",
@@ -159,7 +159,7 @@
         "name": "Víkingahátíðin í Hafnarfirði",
         "description": "Hátíð í Hafnarfirði með bardagasýningum, leikjasýningum, sögumönnum og víkingaskóli fyrir börn.",
         "events": ["víking", "tónlist", "viðburður", "menning"],
-        "imageUrl": "https://scontent.frkv3-1.fna.fbcdn.net/v/t39.30808-6/240986513_4843929865635143_3747442627116573707_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=UQSoKojLV0oQ7kNvgEYcYIQ&_nc_oc=Adi129h65B4k3En1m6wxZ33g9eIvyJpdfkn3Ld11yCJ3DNzVQOumpG7I89HJtwG6uNw&_nc_zt=23&_nc_ht=scontent.frkv3-1.fna&_nc_gid=AmVwcx1CN6NVUPjp6gCArID&oh=00_AYBNDTjoDBNxvR6WYF0tarkdXOA2RORz28_XIZ9OczZN8w&oe=67B9072D",
+        "imageUrl": "https://hafnarfjordur.is/wp-content/uploads/2023/06/Vikingahatid-a-Vidistadatuni-1800x1200.jpg",
         "date": "2025-06-13",
         "location": {
             "city": "Hafnarfjörður",
@@ -172,7 +172,7 @@
         "name": "Upp í sveit",
         "description": "Sveitahátíð í Skeiða og Gnúpverjahreppi sem býður upp á fjölbreytt forrit fyrir fjölskyldur og gesti.",
         "events": ["sveit", "viðburður", "menning", "fjölskylda"],
-        "imageUrl": "https://scontent.frkv3-1.fna.fbcdn.net/v/t39.30808-6/448401607_852387163591487_4018075207148352097_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=dGSOznRh9GUQ7kNvgFWyRXe&_nc_oc=Adg4g8dMfbdCX857AJ63QBxxVA4dA0pjpavSYAi-SqTEw5-EWe7H-gxGJl8bMusokyM&_nc_zt=23&_nc_ht=scontent.frkv3-1.fna&_nc_gid=AgyaQ0WGi9XaKigQr04L_4p&oh=00_AYCvbFBRHcRwLqf_zn1soW8pSvMjzJa3fd-gdkwMwu8qgA&oe=67B91344",
+        "imageUrl": "https://www.skeidgnup.is/static/files/_blob/tg9za6nc7ary5unys1mt6q.jpeg",
         "date": "2025-06-14",
         "location": {
             "city": "Skeiða",
@@ -198,7 +198,7 @@
         "name": "Hofsós heim",
         "description": "Bæjarhátíð á Hofsósi sem býður upp á varðeld, sjósundi, markaði og margvíslega menningarviðburði.",
         "events": ["bæjarhátíð", "viðburður", "fjölskylda", "menning"],
-        "imageUrl": "https://scontent.frkv3-1.fna.fbcdn.net/v/t39.30808-6/284147633_436176745180637_7233441334670708071_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=dG74vwExnFoQ7kNvgHijVJV&_nc_oc=AdhUoyY9QEGUZYbu-7X5M2WXXbJwuZkdfbHuDbDuz6MsnFujpMtcdaYqjCc6lTIiNCo&_nc_zt=23&_nc_ht=scontent.frkv3-1.fna&_nc_gid=AEa-il_Klxqx2uhxlgLTX0Y&oh=00_AYBlLx43uFUsyE84Gm3bmVaUPA77xfFZVXktERzrJZnq3w&oe=67B91F06",
+        "imageUrl": "https://www.skagafjordur.is/static/extras/images/hofsos-heim2372.jpg",
         "date": "2025-06-20",
         "location": {
             "city": "Hofsós",
