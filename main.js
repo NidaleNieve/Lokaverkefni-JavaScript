@@ -125,25 +125,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         await delay(1100);
 
         try {
-            //Bý til sliderinn
-            slider = document.getElementById('slider');
-            noUiSlider.create(slider, {
-                start: [0, 100],
-                connect: true,
-                step: 5,
-                range: {
-                    'min': 0,
-                    'max': 100
-                }
-            });
-            slider.noUiSlider.on("update", function(event) {
-                console.log(event);
-            });
             //fetcha, bý til fragment, svo rendera ég það
             data = await getData(); 
             fragment = fragmentMaker(data);
             render(fragment);
-
             //filli upp loaderinn
             loaderBar.style.width = "100%";
         } catch (err) {
@@ -156,7 +141,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             document.getElementById("overlay").classList.add("hidden");
         }
     })();
-    
+    //stilli upp newdata breytuna sem geymir öll filteruðu gögnin
     //search function með debounce
     let debounceTimeout;
     document.getElementById("searchFestivals").addEventListener("input", function(event) {
@@ -181,14 +166,47 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById('filters').classList.toggle('focused');
         console.log(document.getElementById('slider').noUiSlider.get());
     });
-
     //Ef að það er ýtt á eitthvað í popupinu þá lokast það ekki
     document.querySelector('.popup').addEventListener('click', function(event) {
         event.stopPropagation();
     });
-
     document.addEventListener('click', function() {
         document.querySelector('.popup').classList.remove('show');
         document.getElementById('filters').classList.remove('focused');
+    });
+
+    //Bý til sliderinn
+    slider = document.getElementById('slider');
+    noUiSlider.create(slider, {
+        start: [0, 500],
+        connect: true,
+        step: 10,
+        range: {
+            'min': 0,
+            'max': 500
+        }
+    });
+    /*
+    slider.noUiSlider.on("update", function(event) {
+        document.getElementById('slider-info').textContent =`${event[0]} - ${event[1]} km`;
+    });
+    */
+    let debounceTimeout2;
+    slider.noUiSlider.on("update", function(event) {
+        document.getElementById('slider-info').textContent =`${event[0]} - ${event[1]} km`;
+        //resetta timerinn þannig ef að það er skrifað annan staf þá byrjar hann aftur
+        clearTimeout(debounceTimeout2);
+        //starta timerinn
+        debounceTimeout2 = setTimeout(() => {
+            //ef að 200ms liðnar síðan að það var skrifað þá filtera ég
+            low = event[0] * 1000;
+            high = event[1] * 1000;
+            function filteredData(item) {
+                
+                return calcDistance(item.location.latitude, item.location.longitude) >= low && calcDistance(item.location.latitude, item.location.longitude) <= high;
+            };
+            const fragment = fragmentMaker(data.filter(filteredData));
+            render(fragment);
+        }, 200);
     });
 });

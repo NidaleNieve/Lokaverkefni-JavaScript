@@ -6,9 +6,13 @@ main{
     justify-content: center;
     flex-wrap: wrap;
 }
+.litid {
+    margin: 3px;
+    color: rgb(0, 0, 0, 0.60);
+}
 
 /* universal formattið */
-.card, #searchFestivals, #filters, .popup{
+.card, #searchFestivals, #filters, .popup, #filters-off{
     border-radius: 8px;
     border: 0px;
     padding: 17px;
@@ -30,8 +34,7 @@ main{
 }
 #searchFestivals:focus {
     outline: none;
-    box-shadow: 0px 8px 20px rgba(0, 123, 255, 0.5);
-    transform: scale(0.99);
+    box-shadow: 0px 8px 20px rgba(0, 123, 255, 0.5);transform: scale(0.99);
 }
 
 #filters {
@@ -65,8 +68,9 @@ main{
 .popup {
     position: fixed;
     top: 70px;
-    left: 6px;
-    width: 90%;
+    left: 5px;
+    width: 50%;
+    max-width: 300px;
     border: 1px solid #ddd;
     background-color: #f5f5f5;
     border-radius: 8px;
@@ -85,6 +89,26 @@ main{
     transition: opacity 0.3s ease;
 }
 
+.popup #slider {
+    margin: 15px;
+}
+
+.popup p{
+    margin: 5px;
+}
+
+#filters-off {
+    position: fixed;
+    top: 70px;
+    left: 5px;
+    padding: 10px;
+    z-index: 1000;
+    border: none;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    width: 50px;
+    height: 50px;
+}
 #errors.show{
     color: red;
     transform-style: preserve-3d;
@@ -138,10 +162,6 @@ main{
 }
 .card a:focus {
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
-}
-.litid {
-    margin: 3px;
-    color: rgb(0, 0, 0, 0.60);
 }
 .card h2 {
     margin: 2px;
