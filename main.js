@@ -176,7 +176,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         event.stopPropagation();
         document.querySelector('.popup').classList.toggle('show');
         document.getElementById('filters').classList.toggle('focused');
-        console.log(document.getElementById('slider').noUiSlider.get());
     });
     //Ef að það er ýtt á eitthvað í popupinu þá lokast það ekki
     document.querySelector('.popup').addEventListener('click', function(event) {
@@ -214,5 +213,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             high = event[1] * 1000;
             filters();
         }, 200);
+    });
+    
+    flatpickr(".calendar", {
+        altInput: true,
+        altFormat: "F j, Y",
+        dateFormat: "Y-m-d",
+        wrap: true
     });
 });

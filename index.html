@@ -11,6 +11,8 @@
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/locale/is.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.8.1/nouislider.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.8.1/nouislider.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
     <div id="overlay">
@@ -22,6 +24,26 @@
         <p>Fjarlægð</p>
         <div id="slider"></div>
         <p id="slider-info" class="litid"></p>
+        <!-- <input id="calendar"></input> -->
+        <div class="calendar">
+            <input type="text" placeholder="Veldu dagsetningar" data-input>
+        
+            <a class="input-button" title="toggle" data-toggle>
+                <i class="icon-calendar">
+                    <svg width="20" height="20" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14 2V1h-3v1H6V1H3v1H0v15h17V2h-3zM12 2h1v2h-1V2zM4 2h1v2H4V2zM16 16H1v-8.921h15V16zM1 6.079v-3.079h2v2h3V3h5v2h3V3h2v3.079H1z" fill="#000"></path>
+                    </svg>
+                </i>
+            </a>
+        
+            <a class="input-button" title="clear" data-clear>
+                <i class="icon-close">
+                    <svg width="20" height="20" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.207 8.5l6.646 6.646-.707.707L8.5 9.207l-6.646 6.646-.707-.707L7.793 8.5 1.146 1.854l.707-.707L8.5 7.793l6.646-6.646.707.707L9.207 8.5z" fill="red"></path>
+                    </svg>
+                </i>
+            </a>
+        </div>
     </div>
     <!-- <button id="filters-off">Turn off</button> -->
     <main>
