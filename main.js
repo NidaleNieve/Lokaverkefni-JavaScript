@@ -141,8 +141,24 @@ document.addEventListener("DOMContentLoaded", async () => {
             document.getElementById("overlay").classList.add("hidden");
         }
     })();
-    //stilli upp newdata breytuna sem geymir öll filteruðu gögnin
+
+    //filter functionið
+    function filters() {
+        function filteredData(item) {
+            //filterar eftir searchi og distance, 
+            const filter1 = item.name.toLowerCase().includes(searchid.toLowerCase());
+            const lengd = calcDistance(item.location.latitude, item.location.longitude);
+            const filter2 = lengd >= low && lengd <= high;
+            //skilar bara ef að það er true í báðum filterunum
+            return filter1 && filter2;
+        };
+        //kalla á filter fallið, bý til fragment og rendera það
+        const fragment = fragmentMaker(data.filter(filteredData));
+        render(fragment);
+    }
+
     //search function með debounce
+    let searchid = "";
     let debounceTimeout;
     document.getElementById("searchFestivals").addEventListener("input", function(event) {
         //resetta timerinn þannig ef að það er skrifað annan staf þá byrjar hann aftur
@@ -151,11 +167,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         debounceTimeout = setTimeout(() => {
             //ef að 200ms liðnar síðan að það var skrifað þá filtera ég
             searchid = event.target.value;
-            function filteredData(item) {
-                return item.name.toLowerCase().includes(searchid.toLowerCase());
-            };
-            const fragment = fragmentMaker(data.filter(filteredData));
-            render(fragment);
+            filters();
         }, 200);
     });
 
@@ -186,27 +198,21 @@ document.addEventListener("DOMContentLoaded", async () => {
             'max': 500
         }
     });
-    /*
-    slider.noUiSlider.on("update", function(event) {
-        document.getElementById('slider-info').textContent =`${event[0]} - ${event[1]} km`;
-    });
-    */
+
+    //Slider sem filterar eftir fjarlægð
+    let low = 0;
+    let high = 5000;
     let debounceTimeout2;
     slider.noUiSlider.on("update", function(event) {
-        document.getElementById('slider-info').textContent =`${event[0]} - ${event[1]} km`;
-        //resetta timerinn þannig ef að það er skrifað annan staf þá byrjar hann aftur
+        document.getElementById('slider-info').textContent =`${Number(event[0])} - ${Number(event[1])} km`;
+        //resetta timerinn þannig ef að það er hreyft þá byrjar hann aftur
         clearTimeout(debounceTimeout2);
         //starta timerinn
         debounceTimeout2 = setTimeout(() => {
-            //ef að 200ms liðnar síðan að það var skrifað þá filtera ég
+            //ef að 200ms liðnar síðan að það var interactað þá filtera ég
             low = event[0] * 1000;
             high = event[1] * 1000;
-            function filteredData(item) {
-                
-                return calcDistance(item.location.latitude, item.location.longitude) >= low && calcDistance(item.location.latitude, item.location.longitude) <= high;
-            };
-            const fragment = fragmentMaker(data.filter(filteredData));
-            render(fragment);
+            filters();
         }, 200);
     });
 });
