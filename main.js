@@ -104,6 +104,7 @@ function render(fragment) {
 }
 
 let data = [];
+//initializa date breyturnar þannig það virki í scopeinu
 //Nota IIFE fall til þess að geta notað async/await, það er ekki hægt að nota það í top level kóða
 document.addEventListener("DOMContentLoaded", async () => {
     (async () => { 
@@ -132,9 +133,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             //filli upp loaderinn
             loaderBar.style.width = "100%";
 
+            //Bý til calendarinn
+            //Bý til iterable með öllum dagsetningunum til að finna min og max date
             const dates = data.map(item => new Date(item.date));
             const minDate = new Date(Math.min(...dates));
-            const maxDate = new Date(Math.max(...dates));    
+            const maxDate = new Date(Math.max(...dates));
+
+            let startDate = minDate;
+            let endDate = maxDate;
             flatpickr(".calendar", {
                 altInput: true,
                 altFormat: "M j",
@@ -147,7 +153,19 @@ document.addEventListener("DOMContentLoaded", async () => {
                 locale: {
                     ...flatpickr.l10ns.is, 
                     rangeSeparator: " - "
-                }            
+                },
+                onChange: function(dates) {
+                    //Ef að það range er selected þá filtera ég
+                    if (dates.length === 2) {
+                        startDate = dates[0];
+                        endDate = dates[1];
+                    //ef að það er selectað minna en eitt þá cleara ég date breyturnar
+                    } else {
+                        startDate = null;
+                        endDate = null;
+                    }
+                    filters(startDate, endDate);
+                  }
             });
         } catch (err) {
             //ef error birti það í error tagginu og bæti við hiddenerr klasan til þess að hava flott style
@@ -161,14 +179,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     })();
 
     //filter functionið
-    function filters() {
+    // hef Date breyturnar sem arguement, þannig ég þurfi ekki að declera hafa það í global scope
+    function filters(startDate, endDate) {
         function filteredData(item) {
             //filterar eftir searchi og distance, 
             const filter1 = item.name.toLowerCase().includes(searchid.toLowerCase());
             const lengd = calcDistance(item.location.latitude, item.location.longitude);
             const filter2 = lengd >= low && lengd <= high;
-            //skilar bara ef að það er true í báðum filterunum
-            return filter1 && filter2;
+            const dagur = new Date(item.date);
+            //filterar eftir dagsetningu !xDate er fyrir ef að það er null eða undefined
+            const filter3 = (!startDate || dagur >= startDate) && (!endDate || dagur <= endDate)
+            //skilar bara ef að það er true í öllum filterunum
+            return filter1 && filter2 && filter3;
         };
         //kalla á filter fallið, bý til fragment og rendera það
         const fragment = fragmentMaker(data.filter(filteredData));
