@@ -88,14 +88,40 @@ main{
     visibility: visible;
     transition: opacity 0.3s ease;
 }
-
 .popup #slider {
     margin: 15px;
 }
-
 .popup p{
     margin: 5px;
 }
+
+/*flatpickr calendar */
+.calendar {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 7px;
+}
+.calendar input {
+    width: 50px;
+    flex-grow: 1;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+}
+.input-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-left: 1px solid #ccc;
+    cursor: pointer;
+    background: white;
+}
+
 /* Taka út í bili
 #filters-off {
     position: fixed;
