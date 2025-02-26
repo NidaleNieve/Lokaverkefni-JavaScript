@@ -95,7 +95,7 @@ main{
     margin: 5px;
 }
 
-/*flatpickr calendar */
+/*flatpickr calendar nota flexbox */
 .calendar {
     display: flex;
     border: 1px solid #ccc;

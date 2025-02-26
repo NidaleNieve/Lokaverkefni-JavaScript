@@ -131,6 +131,24 @@ document.addEventListener("DOMContentLoaded", async () => {
             render(fragment);
             //filli upp loaderinn
             loaderBar.style.width = "100%";
+
+            const dates = data.map(item => new Date(item.date));
+            const minDate = new Date(Math.min(...dates));
+            const maxDate = new Date(Math.max(...dates));    
+            flatpickr(".calendar", {
+                altInput: true,
+                altFormat: "M j",
+                dateFormat: "Y-m-d",
+                wrap: true,
+                minDate: minDate,
+                maxDate: maxDate,
+                mode: "range",
+                //loada íslensku en hef range separatorinn sem -
+                locale: {
+                    ...flatpickr.l10ns.is, 
+                    rangeSeparator: " - "
+                }            
+            });
         } catch (err) {
             //ef error birti það í error tagginu og bæti við hiddenerr klasan til þess að hava flott style
             document.querySelector('#errors').textContent = err.message;
@@ -213,12 +231,5 @@ document.addEventListener("DOMContentLoaded", async () => {
             high = event[1] * 1000;
             filters();
         }, 200);
-    });
-    
-    flatpickr(".calendar", {
-        altInput: true,
-        altFormat: "F j, Y",
-        dateFormat: "Y-m-d",
-        wrap: true
     });
 });
