@@ -165,8 +165,18 @@ document.addEventListener("DOMContentLoaded", async () => {
                         endDate = null;
                     }
                     filters(startDate, endDate);
-                  }
+                }
             });
+
+            //Bý til kortið, markers, og nota svo openstreetmap
+            let map = L.map('map').setView([64.1334671, -21.9348417], 13);
+            const markers = data.map(item => new L.marker([item.location.latitude, item.location.longitude]).addTo(map));  
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+            
+
         } catch (err) {
             //ef error birti það í error tagginu og bæti við hiddenerr klasan til þess að hava flott style
             document.querySelector('#errors').textContent = err.message;

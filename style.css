@@ -122,6 +122,10 @@ main{
     background: white;
 }
 
+#map { 
+    height: 180px;
+}
+
 /* Taka út í bili
 #filters-off {
     position: fixed;
