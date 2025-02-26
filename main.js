@@ -5,11 +5,15 @@ async function getData() {
     return await response.json(); //parsa jsonið og skila því
 }
 
+//set upp global location variable, default er reykjavík
+let userLat = 64.146667;
+let userLon = -21.94;
+
 function calcDistance(lat2, lon2) {
     //Reikna fjarlægðina á milli stað og reykjavíkur
-    //reykavik coordinates:
-    lat1 = 64.146667;
-    lon1 = -21.94;
+    //user coordinates, default er reykjavík:
+    lat1 = userLat;
+    lon1 = userLon;
     //nota formúlu sem ég fann hér: https://www.movable-type.co.uk/scripts/latlong.html
     const R = 6371e3; // metres
     const φ1 = lat1 * Math.PI/180; // φ, λ in radians
@@ -168,14 +172,30 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
             });
 
+            //nota geolocation api til að fá user location
+            navigator.geolocation.getCurrentPosition((e) => {
+                    userLat = e.coords.latitude;
+                    userLon = e.coords.longitude;
+            });
+
             //Bý til kortið, markers, og nota svo openstreetmap
-            let map = L.map('map').setView([64.1334671, -21.9348417], 13);
-            const markers = data.map(item => new L.marker([item.location.latitude, item.location.longitude]).addTo(map));  
+            let map = L.map('map').setView([userLat, userLon], 13);
+            //bý til cluster group til að hafa allt
+            const markers = L.markerClusterGroup();
+            //fer í gegnum items og birti location ásamt nafninu og bæti við cluster
+            data.forEach(item => {
+                const marker = L.marker([item.location.latitude, item.location.longitude], { title: item.name });
+                marker.bindTooltip(item.name, { direction: 'top'});
+                markers.addLayer(marker);
+            });
+            //bæti við openstreetmap
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(map);
-            
+            //bæti við markersnum
+            map.addLayer(markers);
+
 
         } catch (err) {
             //ef error birti það í error tagginu og bæti við hiddenerr klasan til þess að hava flott style
