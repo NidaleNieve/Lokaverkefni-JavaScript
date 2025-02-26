@@ -109,6 +109,8 @@ function render(fragment) {
 
 let data = [];
 //initializa date breyturnar þannig það virki í scopeinu
+let startDate;
+let endDate;
 //Nota IIFE fall til þess að geta notað async/await, það er ekki hægt að nota það í top level kóða
 document.addEventListener("DOMContentLoaded", async () => {
     (async () => { 
@@ -148,8 +150,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             const minDate = new Date(Math.min(...dates));
             const maxDate = new Date(Math.max(...dates));
 
-            let startDate = minDate;
-            let endDate = maxDate;
+            startDate = minDate;
+            endDate = maxDate;
             flatpickr(".calendar", {
                 altInput: true,
                 altFormat: "M j",
@@ -173,7 +175,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         startDate = null;
                         endDate = null;
                     }
-                    filters(startDate, endDate);
+                    filters();
                 }
             });
 
@@ -210,8 +212,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     })();
 
     //filter functionið
-    // hef Date breyturnar sem arguement, þannig ég þurfi ekki að declera hafa það í global scope
-    function filters(startDate, endDate) {
+    function filters() {
         function filteredData(item) {
             //filterar eftir searchi og distance, 
             const filter1 = item.name.toLowerCase().includes(searchid.toLowerCase());
