@@ -134,6 +134,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             data = await getData(); 
             fragment = fragmentMaker(data);
             render(fragment);
+            //nota geolocation api til að fá user location áður en ég birti síðuna
+            navigator.geolocation.getCurrentPosition((e) => {
+                userLat = e.coords.latitude;
+                userLon = e.coords.longitude;
+            });
             //filli upp loaderinn
             loaderBar.style.width = "100%";
 
@@ -172,12 +177,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
             });
 
-            //nota geolocation api til að fá user location
-            navigator.geolocation.getCurrentPosition((e) => {
-                    userLat = e.coords.latitude;
-                    userLon = e.coords.longitude;
-            });
-
             //Bý til kortið, markers, og nota svo openstreetmap
             let map = L.map('map').setView([userLat, userLon], 13);
             //bý til cluster group til að hafa allt
@@ -199,8 +198,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         } catch (err) {
             //ef error birti það í error tagginu og bæti við hiddenerr klasan til þess að hava flott style
-            document.querySelector('#errors').textContent = err.message;
-            document.querySelector('#errors').classList.add('show');
+            let errorid = document.createElement('h2');
+            errorid.id = "errors";
+            errorid.textContent = err.message;
+            document.querySelector("main").replaceChildren(errorid);
             console.log(err);
         } finally {
             //Þegar allt er búið að loadast þá fadea út loaderinn
@@ -223,8 +224,16 @@ document.addEventListener("DOMContentLoaded", async () => {
             return filter1 && filter2 && filter3;
         };
         //kalla á filter fallið, bý til fragment og rendera það
-        const fragment = fragmentMaker(data.filter(filteredData));
-        render(fragment);
+        filtered = data.filter(filteredData);
+        if (data.filter(filteredData).length === 0) {
+            let errorid = document.createElement('h2');
+            errorid.id = "errors";
+            errorid.textContent = "Ekkert Fannst!";
+            document.querySelector("main").replaceChildren(errorid);
+        } else {
+            const fragment = fragmentMaker(filtered);
+            render(fragment);
+        };
     }
 
     //search function með debounce
