@@ -66,7 +66,7 @@ function fragmentMaker(data) {
         desc.textContent = description;
 
         const eventin = document.createElement('p');
-        eventin.textContent =`Tags: ${events.join(', ')}`;
+        eventin.textContent =`Viðburðir: ${events.join(', ')}`;
         eventin.classList.add('litid');
 
         const link = document.createElement('a');

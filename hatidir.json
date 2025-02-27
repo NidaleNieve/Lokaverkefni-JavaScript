@@ -219,5 +219,161 @@
             "longitude": -22.2667
         },
         "url": "https://www.facebook.com/hamingjudagar"
+    },
+    {
+        "name": "Þjóðhátíð í Eyjum",
+        "description": "Stór útihátíð haldin í Herjólfsdal í Vestmannaeyjum með tónleikum, brekkusöng og flugeldasýningu.",
+        "events": ["tónleikar", "brekkusöngur", "flugeldasýning"],
+        "imageUrl": "https://www.visir.is/i/94D202F15EB406970F0B19772FEB3D16954D1577F3C2709BB40BE74CD3A33D68_713x0.jpg",
+        "date": "2025-08-01",
+        "location": {
+            "city": "Vestmannaeyjar",
+            "latitude": 63.4427,
+            "longitude": -20.2734
+        },
+        "url": "https://www.dalurinn.is"
+    },
+    {
+        "name": "Aldrei fór ég suður",
+        "description": "Rokkhátíð haldin á Ísafirði yfir páskahelgina með fjölbreyttum tónlistaratriðum.",
+        "events": ["tónleikar", "listviðburðir"],
+        "imageUrl": "https://images.squarespace-cdn.com/content/v1/5f67952608d9df3d7a86a6a7/1714384388099-0HJJXJZHRI3QVD1KBNXM/_A1_5009.jpg?format=1000w",
+        "date": "2025-04-18",
+        "location": {
+            "city": "Ísafjörður",
+            "latitude": 66.0758,
+            "longitude": -23.1356
+        },
+        "url": "https://www.aldrei.is"
+    },
+    {
+        "name": "Secret Solstice",
+        "description": "Tónlistarhátíð í Reykjavík sem fagnar sumarsólstöðum með alþjóðlegum og innlendum listamönnum.",
+        "events": ["tónleikar", "næturklúbbar"],
+        "imageUrl": "https://i0.wp.com/secretsolstice.is/wp-content/uploads/2015/01/001-2.jpg?fit=800%2C533&ssl=1",
+        "date": "2025-06-20",
+        "location": {
+            "city": "Reykjavík",
+            "latitude": 64.1466,
+            "longitude": -21.9426
+        },
+        "url": "https://secretsolstice.is"
+    },
+    {
+        "name": "Eistnaflug",
+        "description": "Þungarokkshátíð haldin í Neskaupstað með áherslu á þungarokk og jaðartónlist.",
+        "events": ["tónleikar", "hljómsveitarkeppni"],
+        "imageUrl": "https://www.east.is/static/extras/images/md/2_rhombie_eistnaflug_2-1100x60591.jpg?v=1",
+        "date": "2025-07-09",
+        "location": {
+            "city": "Neskaupstaður",
+            "latitude": 65.1486,
+            "longitude": -13.7141
+        },
+        "url": "https://www.facebook.com/EistnaflugFestival/?locale=is_IS"
+    },
+    {
+        "name": "LungA",
+        "description": "Listahátíð á Seyðisfirði með áherslu á skapandi vinnustofur og tónleika.",
+        "events": ["vinnustofur", "tónleikar", "sýningar"],
+        "imageUrl": "https://www.lunga.is/24-banner-2.png",
+        "date": "2025-07-13",
+        "location": {
+            "city": "Seyðisfjörður",
+            "latitude": 65.2621,
+            "longitude": -14.0000
+        },
+        "url": "https://www.lunga.is"
+    },
+    {
+        "name": "Bræðslan",
+        "description": "Tónlistarhátíð haldin í gömlu síldarbræðslunni á Borgarfirði eystri með áherslu á íslenska tónlist.",
+        "events": ["tónleikar", "markaðir"],
+        "imageUrl": "https://braedslan.is/wp-content/uploads/2020/11/cropped-BraedslanLogo.png",
+        "date": "2025-07-25",
+        "location": {
+            "city": "Borgarfjörður eystri",
+            "latitude": 65.5189,
+            "longitude": -13.8150
+        },
+        "url": "https://www.braedslan.is"
+    },
+    {
+        "name": "Við Djúpið",
+        "description": "Tónlistarhátíð á Ísafirði með klassískri tónlist og námskeiðum fyrir unga tónlistarmenn.",
+        "events": ["tónleikar", "námskeið"],
+        "imageUrl": "https://i0.wp.com/thefjordhub.is/wp-content/uploads/2024/09/IMG_0914.jpg?fit=600%2C400&ssl=1",
+        "date": "2025-06-10",
+        "location": {
+            "city": "Ísafjörður",
+            "latitude": 66.0758,
+            "longitude": -23.1356
+        },
+        "url": "https://thefjordhub.is/vid-djupid/"
+    },
+    {
+        "name": "Reykjavík Midsummer Music",
+        "description": "Kammertónlistarhátíð í Reykjavík undir listrænni stjórn Víkingur Heiðars Ólafssonar.",
+        "events": ["tónleikar", "meistaranámskeið"],
+        "imageUrl": "https://reykjavikmidsummermusic.com/app/uploads/2016/03/home-slide-2-1140x640.jpg",
+        "date": "2025-06-21",
+        "location": {
+            "city": "Reykjavík",
+            "latitude": 64.1466,
+            "longitude": -21.9426
+        },
+        "url": "https://reykjavikmidsummermusic.com/"
+    },
+    {
+        "name": "Sólstöðuhátíð á Akureyri",
+        "description": "Fjölskylduvæn hátíð á Akureyri með tónleikum, leikjum og ýmsum viðburðum til að fagna sumarsólstöðum.",
+        "events": ["tónleikar", "leikir", "fjölskylduskemmtun"],
+        "imageUrl": "https://www.akureyri.is/static/calendar/images/lg/submit_1641224366.jpg?v=1739051832",
+        "date": "2025-06-21",
+        "location": {
+            "city": "Akureyri",
+            "latitude": 65.6885,
+            "longitude": -18.1262
+        },
+        "url": "https://www.visitakureyri.is/is/see-and-do/hatidir-vidburdir/summer-solstice-festival-in-grimsey-june"
+    },
+    {
+        "name": "Reykjavík International Film Festival",
+        "description": "Alþjóðleg kvikmyndahátíð haldin í Reykjavík með sýningum á nýjum og spennandi kvikmyndum.",
+        "events": ["kvikmyndasýningar", "Q&A viðburðir"],
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Logoriff2.png",
+        "date": "2025-09-24",
+        "location": {
+            "city": "Reykjavík",
+            "latitude": 64.1466,
+            "longitude": -21.9426
+        },
+        "url": "https://www.riff.is"
+    },
+    {
+        "name": "Iceland Airwaves",
+        "description": "Tónlistarhátíð haldin í Reykjavík með áherslu á nýja og spennandi tónlist frá Íslandi og erlendis.",
+        "events": ["tónleikar", "klúbbakvöld"],
+        "imageUrl": "https://static.independent.co.uk/2022/11/08/15/newFile-2.jpg",
+        "date": "2025-11-05",
+        "location": {
+            "city": "Reykjavík",
+            "latitude": 64.1466,
+            "longitude": -21.9426
+        },
+        "url": "https://www.icelandairwaves.is"
+    },
+    {
+        "name": "Jólahátíð í Hafnarfirði",
+        "description": "Jólahátíð haldin í Hafnarfirði með jólamarkaði, tónleikum og fjölskylduskemmtun.",
+        "events": ["jólamarkaður", "tónleikar", "fjölskylduskemmtun"],
+        "imageUrl": "https://hafnarfjordur.is/wp-content/uploads/2023/01/Jolabaerinn_Final_0088-1800x1200.jpg",
+        "date": "2025-12-01",
+        "location": {
+            "city": "Hafnarfjörður",
+            "latitude": 64.0670,
+            "longitude": -21.9370
+        },
+        "url": "https://www.facebook.com/jolathorp/?locale=is_IS"
     }
 ]
