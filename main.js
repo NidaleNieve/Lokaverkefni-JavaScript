@@ -8,6 +8,12 @@ async function getData() {
 //set upp global location variable, default er reykjavík
 let userLat = 64.146667;
 let userLon = -21.94;
+let found = false;
+navigator.geolocation.getCurrentPosition((e) => {
+    userLat = e.coords.latitude;
+    userLon = e.coords.longitude;
+    found = true;
+});
 
 function calcDistance(lat2, lon2) {
     //Reikna fjarlægðina á milli stað og reykjavíkur
@@ -107,10 +113,14 @@ function render(fragment) {
       }); 
 }
 
+
 let data = [];
-//initializa date breyturnar þannig það virki í scopeinu
+//initializa date breyturnar og slider breyturnar þannig það virki í filter functionionu
 let startDate;
 let endDate;
+let low;
+let high;
+
 //Nota IIFE fall til þess að geta notað async/await, það er ekki hægt að nota það í top level kóða
 document.addEventListener("DOMContentLoaded", async () => {
     (async () => { 
@@ -136,13 +146,38 @@ document.addEventListener("DOMContentLoaded", async () => {
             data = await getData(); 
             fragment = fragmentMaker(data);
             render(fragment);
-            //nota geolocation api til að fá user location áður en ég birti síðuna
-            navigator.geolocation.getCurrentPosition((e) => {
-                userLat = e.coords.latitude;
-                userLon = e.coords.longitude;
+
+            //Bý til iterable með öllum fjarægðum hátíðann til að finna min og max fjarlægð fyrir sliderinn
+            const distances = data.map(item => calcDistance(item.location.latitude, item.location.longitude) / 1000);
+            const minDistance = Math.floor(Math.min(...distances)); //nota math.floor til að námunda niður
+            const maxDistance = Math.ceil(Math.max(...distances)); //nota math.ceil til að námunda upp
+
+            //Bý til sliderinn
+            let slider = document.getElementById('slider');
+            noUiSlider.create(slider, {
+                start: [minDistance, maxDistance],
+                connect: true,
+                step: 10,
+                range: {
+                    'min': minDistance,
+                    'max': maxDistance
+                }
             });
-            //filli upp loaderinn
-            loaderBar.style.width = "100%";
+
+            //Slider sem filterar eftir fjarlægð
+            let debounceTimeout2;
+            slider.noUiSlider.on("update", function(event) {
+                document.getElementById('slider-info').textContent =`${Number(event[0])} - ${Number(event[1])} km`;
+                //resetta timerinn þannig ef að það er hreyft þá byrjar hann aftur
+                clearTimeout(debounceTimeout2);
+                //starta timerinn
+                debounceTimeout2 = setTimeout(() => {
+                    //ef að 200ms liðnar síðan að það var interactað þá filtera ég
+                    low = event[0] * 1000;
+                    high = event[1] * 1000;
+                    filters();
+                }, 200);
+            });
 
             //Bý til calendarinn
             //Bý til iterable með öllum dagsetningunum til að finna min og max date
@@ -180,7 +215,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
 
             //Bý til kortið, markers, og nota svo openstreetmap
-            let map = L.map('map').setView([userLat, userLon], 13);
+            let map;
+            if (found) {
+                map = L.map('map').setView([userLat, userLon], 10);
+            } else {
+                map = L.map('map').setView([65, -19], 5);
+            };
             //bý til cluster group til að hafa allt
             const markers = L.markerClusterGroup();
             //fer í gegnum items og birti location ásamt nafninu og bæti við cluster
@@ -197,7 +237,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             //bæti við markersnum
             map.addLayer(markers);
 
-
+            //filli upp loaderinn
+            loaderBar.style.width = "100%";
         } catch (err) {
             //ef error birti það í error tagginu og bæti við hiddenerr klasan til þess að hava flott style
             let errorid = document.createElement('h2');
@@ -224,14 +265,16 @@ document.addEventListener("DOMContentLoaded", async () => {
             //skilar bara ef að það er true í öllum filterunum
             return filter1 && filter2 && filter3;
         };
-        //kalla á filter fallið, bý til fragment og rendera það
+        //kalla á filter fallið
         filtered = data.filter(filteredData);
+        //ef að ekkert fannst þá birti ég error
         if (data.filter(filteredData).length === 0) {
             let errorid = document.createElement('h2');
             errorid.id = "errors";
             errorid.textContent = "Ekkert Fannst!";
             document.querySelector("main").replaceChildren(errorid);
         } else {
+            //bý til fragment og byrti það ef að það var fundið eitthvað
             const fragment = fragmentMaker(filtered);
             render(fragment);
         };
@@ -264,34 +307,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.addEventListener('click', function() {
         document.querySelector('.popup').classList.remove('show');
         document.getElementById('filters').classList.remove('focused');
-    });
-
-    //Bý til sliderinn
-    slider = document.getElementById('slider');
-    noUiSlider.create(slider, {
-        start: [0, 500],
-        connect: true,
-        step: 10,
-        range: {
-            'min': 0,
-            'max': 500
-        }
-    });
-
-    //Slider sem filterar eftir fjarlægð
-    let low = 0;
-    let high = 5000;
-    let debounceTimeout2;
-    slider.noUiSlider.on("update", function(event) {
-        document.getElementById('slider-info').textContent =`${Number(event[0])} - ${Number(event[1])} km`;
-        //resetta timerinn þannig ef að það er hreyft þá byrjar hann aftur
-        clearTimeout(debounceTimeout2);
-        //starta timerinn
-        debounceTimeout2 = setTimeout(() => {
-            //ef að 200ms liðnar síðan að það var interactað þá filtera ég
-            low = event[0] * 1000;
-            high = event[1] * 1000;
-            filters();
-        }, 200);
     });
 });
