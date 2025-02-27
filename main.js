@@ -1,6 +1,6 @@
 async function getData() {
     //Fetcha dataið, parsar það og skilar því svo
-    const url = "info.json";
+    const url = "hatidir.json";
     const response = await fetch(url); //fetcha dataið
     return await response.json(); //parsa jsonið og skila því
 }
