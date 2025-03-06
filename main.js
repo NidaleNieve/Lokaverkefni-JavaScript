@@ -306,8 +306,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     //filter takkinn, sýnir menu-ið
     document.getElementById('filters').addEventListener('click', function(event) {
         event.stopPropagation();
-        document.querySelector('.popup').classList.toggle('show');
         document.getElementById('filters').classList.toggle('focused');
+        if (document.getElementById('filterpop').classList.contains('show')) {
+            document.getElementById('filters').classList.remove('scrolled');
+        } else {
+            document.getElementById('filters').classList.add('scrolled');
+        }
+        document.getElementById('filterpop').classList.toggle('show');
+
     });
     //Ef að það er ýtt á eitthvað í popupinu þá lokast það ekki
     document.querySelector('.popup').addEventListener('click', function(event) {
@@ -316,5 +322,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.addEventListener('click', function() {
         document.querySelector('.popup').classList.remove('show');
         document.getElementById('filters').classList.remove('focused');
+        if (window.scrollY > 50) {
+            document.getElementById('filters').classList.add('scrolled');
+        } else {
+            document.getElementById('filters').classList.remove('scrolled');
+        } 
     });
 });
