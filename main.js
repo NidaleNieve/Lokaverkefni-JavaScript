@@ -267,7 +267,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         };
         //kalla á filter fallið
         filtered = data.filter(filteredData);
-        //ef að ekkert fannst þá birti ég error
+        //ef að ekkert   þá birti ég error
         if (data.filter(filteredData).length === 0) {
             let errorid = document.createElement('h2');
             errorid.id = "errors";
@@ -279,6 +279,15 @@ document.addEventListener("DOMContentLoaded", async () => {
             render(fragment);
         };
     }
+    window.addEventListener('scroll', function() {
+        const filtersButton = document.getElementById('filters');
+        
+        if (window.scrollY > 50) {
+            filtersButton.classList.add('scrolled');
+        } else {
+            filtersButton.classList.remove('scrolled');
+        }        
+    });
 
     //search function með debounce
     let searchid = "";
