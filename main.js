@@ -280,12 +280,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         };
     }
     window.addEventListener('scroll', function() {
-        const filtersButton = document.getElementById('filters');
-        
         if (window.scrollY > 50) {
-            filtersButton.classList.add('scrolled');
-        } else {
-            filtersButton.classList.remove('scrolled');
+            document.getElementById('filters').classList.add('scrolled');
+        } else if (!document.getElementById('filterpop').classList.contains('show')) {
+            document.getElementById('filters').classList.remove('scrolled');
         }        
     });
 
@@ -307,13 +305,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById('filters').addEventListener('click', function(event) {
         event.stopPropagation();
         document.getElementById('filters').classList.toggle('focused');
-        if (document.getElementById('filterpop').classList.contains('show')) {
-            document.getElementById('filters').classList.remove('scrolled');
+        if (window.scrollY < 50 && document.getElementById('filterpop').classList.contains('show')) {
+                document.getElementById('filters').classList.remove('scrolled');
         } else {
             document.getElementById('filters').classList.add('scrolled');
         }
         document.getElementById('filterpop').classList.toggle('show');
-
     });
     //Ef að það er ýtt á eitthvað í popupinu þá lokast það ekki
     document.querySelector('.popup').addEventListener('click', function(event) {
