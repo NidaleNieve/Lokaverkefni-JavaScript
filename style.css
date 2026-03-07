@@ -262,3 +262,10 @@ main{
         gap: 20px;
     }
 }
+
+/* Láta titilinn vera smá til vinstri þegar verið er að nota á litlum skjá */
+@media screen and (max-width: 350px) {
+    .titill {
+        padding-right: 40px;
+    }
+}
