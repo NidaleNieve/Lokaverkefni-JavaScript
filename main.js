@@ -304,6 +304,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     //filter takkinn, sýnir menu-ið
     document.getElementById('filters').addEventListener('click', function(event) {
         event.stopPropagation();
+        // Loka öðrum popups ef þau eru opin
+        if (document.getElementById('externalLinksPop')) {
+            document.getElementById('externalLinksPop').classList.remove('show');
+            document.getElementById('externalLinks').classList.remove('focused');
+        }
+
         document.getElementById('filters').classList.toggle('focused');
         if (window.scrollY < 50 && document.getElementById('filterpop').classList.contains('show')) {
                 document.getElementById('filters').classList.remove('scrolled');
@@ -312,13 +318,36 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
         document.getElementById('filterpop').classList.toggle('show');
     });
+
+    //external links takkinn, sýnir menu-ið
+    if (document.getElementById('externalLinks')) {
+        document.getElementById('externalLinks').addEventListener('click', function(event) {
+            event.stopPropagation();
+            // Loka öðrum popups ef þau eru opin
+            document.getElementById('filterpop').classList.remove('show');
+            document.getElementById('filters').classList.remove('focused');
+            
+            document.getElementById('externalLinks').classList.toggle('focused');
+            document.getElementById('externalLinksPop').classList.toggle('show');
+        });
+    }
+
     //Ef að það er ýtt á eitthvað í popupinu þá lokast það ekki
-    document.querySelector('.popup').addEventListener('click', function(event) {
-        event.stopPropagation();
+    document.querySelectorAll('.popup').forEach(popup => {
+        popup.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
     });
+
     document.addEventListener('click', function() {
-        document.querySelector('.popup').classList.remove('show');
+        document.getElementById('filterpop').classList.remove('show');
         document.getElementById('filters').classList.remove('focused');
+        
+        if (document.getElementById('externalLinksPop')) {
+            document.getElementById('externalLinksPop').classList.remove('show');
+            document.getElementById('externalLinks').classList.remove('focused');
+        }
+
         if (window.scrollY > 50) {
             document.getElementById('filters').classList.add('scrolled');
         } else {
