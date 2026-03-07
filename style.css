@@ -88,20 +88,55 @@ main{
     top: 80px;
     left: auto;
     right: 5px;
+    width: 320px;
+}
+.external-links-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 #externalLinksPop a {
-    display: block;
+    display: flex;
+    align-items: center;
     padding: 10px;
     color: #0a0a0a;
     text-decoration: none;
     border-radius: 8px;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     background-color: #f0f0f0;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 #externalLinksPop a:hover {
     background-color: #e0e0e0;
     transform: scale(1.02);
+}
+.link-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 12px;
+    object-fit: contain;
+}
+.vefh2-icon {
+    transform: scale(1.6);
+}
+.vefh3-icon {
+    object-fit: cover;
+    object-position: left center;
+    transform: scale(1.1);
+}
+.link-content {
+    display: flex;
+    flex-direction: column;
+}
+.link-title {
+    font-weight: 600;
+    font-size: 15px;
+}
+.link-subtext {
+    font-size: 12px;
+    color: rgb(0, 0, 0, 0.60);
+    margin-top: 3px;
+    line-height: 1.2;
 }
 
 .popup {
